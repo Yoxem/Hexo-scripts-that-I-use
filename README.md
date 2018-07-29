@@ -1,4 +1,7 @@
-English
+Hexo scripts that I use / 我使用於 Hexo 的 script
+========================================================
+
+nglish
 --------
 The gist contains the scripts used with Hexo. To install them, you just download them to [Hexo blog folder]/scripts.
 

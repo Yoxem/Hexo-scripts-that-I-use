@@ -38,7 +38,10 @@ hexo.extend.filter.register('before_post_render', (data) => {
     return data;
 });
 
+
+
 hexo.extend.tag.register('gloss', function(args, content){
+
 
 var content2dArray = [];
 var contentSplitted = content.split("\n");
@@ -60,10 +63,10 @@ for (var i=0; i<content2dArray.length; i++){
 		line_result += ("<div class=\"css-td1\">" + content2dArray[i][j] + "</div>");
 	}
 
-	line_result += "</div>"
+	line_result += "</div>";
 	
 	render_result += line_result;
 }
 
-	return "<div class='css-table1'>" + render_result + "</div></div></div>"},
+return "<div class='css-table1'>" + render_result + "</div></div></div>" },
 {ends: true});

@@ -10,7 +10,7 @@ Gua2 siong1-sin3 Li2.
 
 */
 
-hexo.extend.filter.register('before_post_render', (data) => {
+hexo.extend.filter.register('after_post_render', (data) => {
 	var css_content = `
 	.css-table1{
 		display: table;
@@ -24,23 +24,22 @@ hexo.extend.filter.register('before_post_render', (data) => {
 		display: table-cell;
 		padding-right: 1ex;
 	}`;
-
+	
 	var css_rendered = css_content.replace(/([ ]|\t|\n)+/g, " ");
 
-	var link_js = `<script type=\"text/javascript">
-		alert("123");
-		head = document.getElementsByTagName('head');
 
-		link_css = document.createElement('style');
-		link_css.setAttribute('type', 'text/css');
+	var link_js = `<script type="text/javascript">
+	var head = document.getElementsByTagName(\"head\");
+	var link_css = document.createElement('style');
+	
+	link_css.setAttribute('type', 'text/css');
+	link_css.innerHTML = '${css_rendered}';
+	
+	document.getElementsByTagName('head')[0].appendChild(link_css);</script>`;
 
-		link_css.innerHTML = "${css_rendered}";
+	var link_js_rendered = link_js.replace(/(\t|\n)+/g, " ").replace(/‘/g, "'");
 
-		document.getElementsByTagName('head')[0].appendChild(link_css);
-
-	</script>`;
-
-    data.content += link_js;
+    data.content += link_js_rendered;
     return data;
 });
 

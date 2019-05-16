@@ -11,28 +11,34 @@ Gua2 siong1-sin3 Li2.
 */
 
 hexo.extend.filter.register('before_post_render', (data) => {
-	var css_content = `.css-table1{
-	display: table;
-	border: none; }
-	
+	var css_content = `
+	.css-table1{
+		display: table;
+		border: none;}
+		
 	.css-tr1{
-	display:table-row;
+		display:table-row;
 	}
-
+	
 	.css-td1{
-	display:table-cell;}`
+		display: table-cell;
+		padding-right: 1ex;
+	}`;
+
+	var css_rendered = css_content.replace(/([ ]|\t|\n)+/g, " ");
 
 	var link_js = `<script type=\"text/javascript">
+		alert("123");
 		head = document.getElementsByTagName('head');
 
 		link_css = document.createElement('style');
 		link_css.setAttribute('type', 'text/css');
 
-		link_css.innerHTML = "${css_content}";
+		link_css.innerHTML = "${css_rendered}";
 
 		document.getElementsByTagName('head')[0].appendChild(link_css);
 
-	</script>`
+	</script>`;
 
     data.content += link_js;
     return data;
